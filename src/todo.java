@@ -4,17 +4,19 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class todo {
+  static FileManager fileManager = new FileManager();
+
   public static void main(String[] args) {
     if (args.length == 0) {
       printInfo();
     } else {
-      for (String s : args) {
-        switch (s) {
+      for (int i = 0; i < args.length; i++) {
+        switch (args[i]) {
           case "-l":
             showTasks();
             break;
           case "-a":
-            System.out.println("");
+            addTask(args[i+1]);
         }
       }
     }
@@ -32,19 +34,10 @@ public class todo {
   }
 
   private static void showTasks() {
-    try {
-      Path filePath = Paths.get("assets/tasks.txt");
-      List<String> lines = Files.readAllLines(filePath);
+    fileManager.showTasks();
+  }
 
-      if (lines.size() > 0) {
-        for (int i = 0; i < lines.size(); i++) {
-          System.out.println((i+1) + " - " + lines.get(i));
-        }
-      } else {
-        System.out.println("No todos for today! :)");
-      }
-    } catch (Exception e) {
-      System.out.println("Could not read the tasks.txt file!");
-    }
+  private static void addTask(String taskName) {
+    fileManager.addTask(taskName);
   }
 }
