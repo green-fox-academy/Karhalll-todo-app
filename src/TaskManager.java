@@ -4,11 +4,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class FileManager {
+public class TaskManager {
   Path filePath;
   List<String> lines;
 
-  public FileManager() {
+  public TaskManager() {
     try {
       filePath = Paths.get("assets/tasks.txt");
       lines = Files.readAllLines(filePath);
@@ -39,6 +39,11 @@ public class FileManager {
   public void removeTask(int taskNumber) {
     try {
       lines.remove(taskNumber - 1);
+    } catch (IndexOutOfBoundsException e) {
+      System.out.println("Unable to remove: index is out of bound");
+    }
+
+    try {
       Files.write(filePath, lines);
     } catch (IOException e) {
       System.out.println("Cannot write to tasks.txt file.");

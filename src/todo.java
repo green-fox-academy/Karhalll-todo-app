@@ -1,10 +1,5 @@
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
-
 public class todo {
-  static FileManager fileManager = new FileManager();
+  static TaskManager taskManager = new TaskManager();
 
   public static void main(String[] args) {
     if (args.length == 0) {
@@ -16,10 +11,20 @@ public class todo {
             showTasks();
             break;
           case "-a":
-            addTask(args[i+1]);
+            try {
+              addTask(args[i+1]);
+            } catch (ArrayIndexOutOfBoundsException e) {
+              System.out.println("Unable to add: no task provided");
+            }
             break;
           case "-r":
-            removeTask(args[i+1]);
+            try {
+              removeTask(args[i+1]);
+            } catch (ArrayIndexOutOfBoundsException e) {
+              System.out.println("Unable to remove: no index provided");
+            } catch (NumberFormatException e) {
+              System.out.println("Unable to remove: index is not a number");
+            }
             break;
         }
       }
@@ -38,15 +43,15 @@ public class todo {
   }
 
   private static void showTasks() {
-    fileManager.showTasks();
+    taskManager.showTasks();
   }
 
   private static void addTask(String taskName) {
-    fileManager.addTask(taskName);
+    taskManager.addTask(taskName);
   }
 
   private static void removeTask(String taskNumber) {
     int taskNumberInt = Integer.parseInt(taskNumber);
-    fileManager.removeTask(taskNumberInt);
+    taskManager.removeTask(taskNumberInt);
   }
 }
