@@ -17,6 +17,10 @@ public class todo {
             break;
           case "-a":
             addTask(args[i+1]);
+            break;
+          case "-r":
+            removeTask(args[i+1]);
+            break;
         }
       }
     }
@@ -39,5 +43,10 @@ public class todo {
 
   private static void addTask(String taskName) {
     fileManager.addTask(taskName);
+  }
+
+  private static void removeTask(String taskNumber) {
+    int taskNumberInt = Integer.parseInt(taskNumber);
+    fileManager.removeTask(taskNumberInt);
   }
 }

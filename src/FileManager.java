@@ -35,4 +35,13 @@ public class FileManager {
       System.out.println("Cannot write to tasks.txt file.");
     }
   }
+
+  public void removeTask(int taskNumber) {
+    try {
+      lines.remove(taskNumber - 1);
+      Files.write(filePath, lines);
+    } catch (IOException e) {
+      System.out.println("Cannot write to tasks.txt file.");
+    }
+  }
 }
