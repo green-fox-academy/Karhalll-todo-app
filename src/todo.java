@@ -26,6 +26,8 @@ public class todo {
               System.out.println("Unable to remove: index is not a number");
             }
             break;
+          default:
+            System.out.println("Unsupported argument");
         }
       }
     }
