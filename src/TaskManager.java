@@ -20,7 +20,7 @@ public class TaskManager {
   public void showTasks() {
     if (lines.size() > 0) {
       for (int i = 0; i < lines.size(); i++) {
-        System.out.println((i+1) + " - " + lines.get(i));
+        System.out.println((i+1) + " - " + "[ ] " + lines.get(i));
       }
     } else {
       System.out.println("No todos for today! :)");
