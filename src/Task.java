@@ -1,5 +1,3 @@
-package assets;
-
 public class Task {
   public String name;
   public boolean isChecked;
